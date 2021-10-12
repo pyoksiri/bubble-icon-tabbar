@@ -10,7 +10,9 @@ import UIKit
 
 public class CBTabBarItem: UITabBarItem {
     @IBInspectable public var tintColor: UIColor?
+    @IBInspectable public var titleColor: UIColor?
     @IBInspectable public var rightToLeft:Bool = false
+    public var font: UIFont?
 }
 
 public class CBTabBarButton: UIControl {
@@ -69,6 +71,14 @@ public class CBTabBarButton: UIControl {
                 if let color = tabItem.tintColor {
                     tintColor = color
                 }
+                if let font = tabItem.font {
+                    tabLabel.font = font
+                }
+                if let titleColor = tabItem.titleColor {
+                    tabLabel.textColor = titleColor
+                } else {
+                    tabLabel.textColor = tintColor
+                }
                 rightToLeft = tabItem.rightToLeft
             }
         }
@@ -79,7 +89,6 @@ public class CBTabBarButton: UIControl {
             if _isSelected {
                 tabImage.tintColor = tintColor
             }
-            tabLabel.textColor = tintColor
             tabBg.backgroundColor = tintColor.withAlphaComponent(0.2)
         }
     }
