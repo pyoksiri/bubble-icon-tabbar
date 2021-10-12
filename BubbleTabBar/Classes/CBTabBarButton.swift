@@ -11,6 +11,7 @@ import UIKit
 public class CBTabBarItem: UITabBarItem {
     @IBInspectable public var tintColor: UIColor?
     @IBInspectable public var titleColor: UIColor?
+    @IBInspectable public var backgroundColor: UIColor?
     @IBInspectable public var rightToLeft:Bool = false
     public var font: UIFont?
 }
@@ -19,6 +20,7 @@ public class CBTabBarButton: UIControl {
 
     var font: UIFont = UIFont.systemFont(ofSize: 14)
     var titleColor: UIColor = UIColor.black
+    var buttonBackgroundColor: UIColor = UIColor.white
     var rightToLeft:Bool = false
     private var _isSelected: Bool = false
     override public var isSelected: Bool {
@@ -81,7 +83,16 @@ public class CBTabBarButton: UIControl {
                 } else {
                     self.titleColor = tintColor
                 }
+                if let backgroundColor = tabItem.backgroundColor {
+                    self.buttonBackgroundColor = backgroundColor
+                } else {
+                    self.buttonBackgroundColor = tintColor.withAlphaComponent(0.2)
+                }
                 rightToLeft = tabItem.rightToLeft
+                
+                tabLabel.textColor = titleColor
+                tabLabel.font = font
+                tabBg.backgroundColor = buttonBackgroundColor
             }
         }
     }
@@ -91,12 +102,9 @@ public class CBTabBarButton: UIControl {
             if _isSelected {
                 tabImage.tintColor = tintColor
             }
-            tabLabel.textColor = titleColor
-            tabLabel.font = font
-            tabBg.backgroundColor = tintColor.withAlphaComponent(0.2)
         }
     }
-
+    
     private var tabImage = UIImageView()
     private var tabLabel = UILabel()
     private var tabBg = UIView()
