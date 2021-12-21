@@ -59,7 +59,7 @@ public class CBTabBarButton: UIControl {
     }
     
     private var currentFont:UIFont? {
-        return UIFont(name: "System", size: 11)
+        return UIFont.systemFont(ofSize: 10.0, weight: .medium)
     }
     
     private var currentImage: UIImage? {
@@ -155,7 +155,7 @@ public class CBTabBarButton: UIControl {
         tabBadge.textAlignment = .center
         tabBadge.font = currentFont
         tabBadge.text = currentBadge
-        tabBadge.backgroundColor = tintColor
+        tabBadge.backgroundColor = UIColor.init(red: 225.0/255.0, green: 86.0/255.0, blue: 86.0/255.0, alpha: 1.0)
         
         self.addSubview(tabBg)
         self.addSubview(tabLabel)
@@ -187,6 +187,10 @@ public class CBTabBarButton: UIControl {
             csFoldedBgTrailing = tabImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -bgHeight/2.0)
             csUnfoldedBgTrailing = tabLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -bgHeight/2.0)
         }
+        tabBadge.center = tabImage.center
+        var badgeFrame = tabBadge.frame
+        badgeFrame.origin.y = 0.0
+        tabBadge.frame = badgeFrame
         
         fold()
         setNeedsLayout()
