@@ -19,10 +19,13 @@ class ViewController: UIViewController {
     @IBAction func btnFromCodePressed(_ sender: AnyObject) {
         let eventsVC = CBSampleViewController()
         eventsVC.tabBarItem = UITabBarItem(title: "Events", image: #imageLiteral(resourceName: "dashboard"), tag: 0)
+        eventsVC.tabBarItem.badgeValue = "1"
         let searchVC = CBSampleViewController()
         searchVC.tabBarItem = UITabBarItem(title: "Search", image: #imageLiteral(resourceName: "clock"), tag: 0)
+        searchVC.tabBarItem.badgeValue = "1"
         let activityVC = CBSampleViewController()
         activityVC.tabBarItem = UITabBarItem(title: "Activity", image: #imageLiteral(resourceName: "folder"), tag: 0)
+        activityVC.tabBarItem.badgeValue = "1"
         let settingsVC = CBSampleViewController()
         settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "menu"), tag: 0)
         settingsVC.tabBarItem.selectedImage = #imageLiteral(resourceName: "clock")

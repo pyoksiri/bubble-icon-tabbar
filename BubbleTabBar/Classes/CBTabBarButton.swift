@@ -187,11 +187,6 @@ public class CBTabBarButton: UIControl {
             csFoldedBgTrailing = tabImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -bgHeight/2.0)
             csUnfoldedBgTrailing = tabLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -bgHeight/2.0)
         }
-        tabBadge.center = tabImage.center
-        var badgeFrame = tabBadge.frame
-        badgeFrame.origin.y = 0.0
-        tabBadge.frame = badgeFrame
-        
         fold()
         setNeedsLayout()
     }
@@ -240,6 +235,10 @@ public class CBTabBarButton: UIControl {
     override public func layoutSubviews() {
         super.layoutSubviews()
         tabBg.layer.cornerRadius = tabBg.bounds.height / 2.0
+        tabBadge.center = tabImage.center
+        var badgeFrame = tabBadge.frame
+        badgeFrame.origin.y = 2.0
+        tabBadge.frame = badgeFrame
     }
 }
 
