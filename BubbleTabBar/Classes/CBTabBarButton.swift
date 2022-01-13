@@ -74,6 +74,12 @@ public class CBTabBarButton: UIControl {
         }
         return image.renderingMode == .automatic ? image.withRenderingMode(.alwaysTemplate) : image
     }
+    
+    public func updateBadge(_ value: String?) {
+        item?.badgeValue = value
+        tabBadge.text = currentBadge
+        tabBadge.isHidden = (value ?? "").isEmpty
+    }
 
     public var item: UITabBarItem? {
         didSet {
@@ -156,14 +162,12 @@ public class CBTabBarButton: UIControl {
         tabBadge.font = currentFont
         tabBadge.text = currentBadge
         tabBadge.backgroundColor = UIColor.init(red: 225.0/255.0, green: 86.0/255.0, blue: 86.0/255.0, alpha: 1.0)
+        tabBadge.isHidden = (currentBadge ?? "").isEmpty
         
         self.addSubview(tabBg)
         self.addSubview(tabLabel)
         self.addSubview(tabImage)
-
-        if let _ = currentBadge {
-            self.addSubview(tabBadge)
-        }
+        self.addSubview(tabBadge)
         
         tabBg.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         tabBg.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

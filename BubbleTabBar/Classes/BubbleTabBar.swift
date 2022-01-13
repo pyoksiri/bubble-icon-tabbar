@@ -189,4 +189,9 @@ open class BubbleTabBar: UITabBar {
         }
     }
     
+    public func buttonFor(index: Int) -> CBTabBarButton {
+        let button = buttons[index]
+        return button
+    }
+    
 }

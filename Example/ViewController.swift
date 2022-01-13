@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     @IBAction func btnFromCodePressed(_ sender: AnyObject) {
         let eventsVC = CBSampleViewController()
         eventsVC.tabBarItem = UITabBarItem(title: "Events", image: #imageLiteral(resourceName: "dashboard"), tag: 0)
-        eventsVC.tabBarItem.badgeValue = "1"
         let searchVC = CBSampleViewController()
         searchVC.tabBarItem = UITabBarItem(title: "Search", image: #imageLiteral(resourceName: "clock"), tag: 0)
         searchVC.tabBarItem.badgeValue = "1"
@@ -35,6 +34,10 @@ class ViewController: UIViewController {
         tabBarController.viewControllers = [eventsVC, searchVC, activityVC, settingsVC]
         tabBarController.tabBar.tintColor = #colorLiteral(red: 0.1579992771, green: 0.1818160117, blue: 0.5072338581, alpha: 1)
         self.navigationController?.pushViewController(tabBarController, animated: true)
+        if let tabBar = tabBarController.tabBar as? BubbleTabBar {
+            let button = tabBar.buttonFor(index: 1)
+            button.updateBadge("80")
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
